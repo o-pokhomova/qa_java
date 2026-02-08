@@ -1,6 +1,5 @@
 package com.example;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +19,6 @@ public class CatTest {
         cat = new Cat(feline);
     }
 
-    @After
-    public void tearDown() {
-        Mockito.verifyNoMoreInteractions(feline);
-    }
-
     @Test
     public void getSound() {
         Assert.assertEquals(
@@ -41,6 +35,16 @@ public class CatTest {
                 CATS_FOOD,
                 cat.getFood()
         );
+    }
+
+    @Test
+    public void getFoodTestMocks() throws Exception {
+        Mockito.when(feline.eatMeat())
+                .thenReturn(CATS_FOOD);
+
+        cat.getFood();
+
         Mockito.verify(feline).eatMeat();
+        Mockito.verifyNoMoreInteractions(feline);
     }
 }

@@ -1,6 +1,5 @@
 package com.example;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,34 +33,43 @@ public class LionTest {
         lion = new Lion(feline, "Самец");
     }
 
-    @After
-    public void tearDown() {
-        Mockito.verifyNoMoreInteractions(feline);
-    }
-
     @Test
     public void getKittens() {
-        Mockito.when(feline.getKittens())
-                .thenReturn(KITTENS_COUNT);
+        Mockito.when(feline.getKittens()).thenReturn(KITTENS_COUNT);
 
         Assert.assertEquals(
                 KITTENS_COUNT,
                 lion.getKittens()
         );
+    }
+
+    @Test
+    public void getKittensTestMocks() {
+        Mockito.when(feline.getKittens()).thenReturn(KITTENS_COUNT);
+
+        lion.getKittens();
 
         Mockito.verify(feline).getKittens();
+        Mockito.verifyNoMoreInteractions(feline);
     }
 
     @Test
     public void getFood() throws Exception {
-        Mockito.when(feline.getFood(PREDATOR))
-                .thenReturn(LIONS_FOOD);
+        Mockito.when(feline.getFood(PREDATOR)).thenReturn(LIONS_FOOD);
 
         Assert.assertEquals(
                 LIONS_FOOD,
                 lion.getFood()
         );
+    }
+
+    @Test
+    public void getFoodTestMocks() throws Exception {
+        Mockito.when(feline.getFood(PREDATOR)).thenReturn(LIONS_FOOD);
+
+        lion.getFood();
 
         Mockito.verify(feline).getFood(PREDATOR);
+        Mockito.verifyNoMoreInteractions(feline);
     }
 }
