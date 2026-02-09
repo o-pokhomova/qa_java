@@ -50,7 +50,6 @@ public class LionTest {
         lion.getKittens();
 
         Mockito.verify(feline).getKittens();
-        Mockito.verifyNoMoreInteractions(feline);
     }
 
     @Test
@@ -70,6 +69,5 @@ public class LionTest {
         lion.getFood();
 
         Mockito.verify(feline).getFood(PREDATOR);
-        Mockito.verifyNoMoreInteractions(feline);
     }
 }

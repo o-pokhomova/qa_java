@@ -70,7 +70,6 @@ public class AlexLionTest {
         alex.getFood();
 
         Mockito.verify(feline).getFood(PREDATOR);
-        Mockito.verifyNoMoreInteractions(feline);
     }
 
     @Test

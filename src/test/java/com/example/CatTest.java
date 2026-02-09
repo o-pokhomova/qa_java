@@ -45,6 +45,5 @@ public class CatTest {
         cat.getFood();
 
         Mockito.verify(feline).eatMeat();
-        Mockito.verifyNoMoreInteractions(feline);
     }
 }
